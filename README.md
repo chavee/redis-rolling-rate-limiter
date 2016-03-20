@@ -1,5 +1,7 @@
 # Rolling Rate Limiter with Redis
 
+[![Build Status](https://api.travis-ci.org/Aurlin/redis-rolling-rate-limiter.svg?branch=master)]
+
 Rolling Rate Limiter is a module for [Node.js](http://nodejs.org) which provides a basic, but a solid rate limiter using sliding windows stored in Redis. It was inspired from [ClassDojo Rate Limiter](https://github.com/classdojo/rolling-rate-limiter), but several issues has been fixed like :
 - Removing closure to fix a memory leak if a lot of users request the limit
 - Instead of fetching the whole range (with ZRANGE(key, 0, -1)) and then count the number of elements, we use ZCARD, and only fetch the first timestamp and the last timestamp, so we avoid a large operation in Redis and save a lot of memory if we use a large limit (like 3000 request / min).
@@ -8,7 +10,7 @@ Rolling Rate Limiter is a module for [Node.js](http://nodejs.org) which provides
 
 ## Requirements
 
-- NodeJS >= 0.12.x
+- NodeJS >= 0.10.x
 - Redis >= 2.6.12
 
 ## Examples
@@ -31,7 +33,6 @@ var limiter = RateLimiter({
 });
 
 client.on('ready', function() {
- 
  limiter('my-limit', function(err, timeLeft) {
   if(err) {
     throw err;
@@ -45,7 +46,6 @@ client.on('ready', function() {
   }
   
  });
- 
 });
 
 
