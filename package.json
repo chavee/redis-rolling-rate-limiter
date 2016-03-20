@@ -4,7 +4,7 @@
   "description": "Rolling Rate Limiter is a module for Node.js which provides a basic, but a solid rate limiter using sliding windows stored in Redis.",
   "main": "index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "./node_modules/mocha/bin/mocha"
   },
   "repository": {
     "type": "git",
