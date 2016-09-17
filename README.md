@@ -1,6 +1,6 @@
 # Rolling Rate Limiter with Redis
 
-[![Build Status](https://api.travis-ci.org/Aurlin/redis-rolling-rate-limiter.svg?branch=master)](http://travis-ci.org/Aurlin/redis-rolling-rate-limiter)
+[![Build Status](https://api.travis-ci.org/Aurlin/redis-rolling-rate-limiter.svg?branch=master)](http://travis-ci.org/Aurlin/redis-rolling-rate-limiter) [![dependencies Status](https://david-dm.org/Aurlin/redis-rolling-rate-limiter/status.svg)](https://david-dm.org/Aurlin/redis-rolling-rate-limiter)
 
 Rolling Rate Limiter is a module for [Node.js](http://nodejs.org) which provides a basic, but a solid rate limiter using sliding windows stored in [Redis](http://http://redis.io/). It was inspired from [ClassDojo Rate Limiter](https://github.com/classdojo/rolling-rate-limiter), but several issues has been fixed like :
 - Removing closure to fix a memory leak if a lot of users request the limit
