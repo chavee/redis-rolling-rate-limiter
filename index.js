@@ -74,13 +74,21 @@ module.exports = function (options) {
                 timeLeft = Math.floor(timeLeft / 1000); // convert from microseconds for user readability.
             }
 
-            if (timeLeft == null) {
-                cb(err, 0);
+            if (timeLeft == null  ) {
+                if (userSetLength == maxInInterval-1) {
+                    cb(err, true,  Math.max(timeUntilNextIntervalOpportunity||0, minDifference) / 1000);
+                }
+                else {
+                    var timeUntilNextMinDifferenceOpportunity = minDifference - timeSinceLastRequest;
+                    var k = Math.max(minDifference||0, Math.min(timeUntilNextIntervalOpportunity||0, timeUntilNextMinDifferenceOpportunity||0) ) / 1000;
+                    cb(err, true,  k);
+                }
+
             } else {
                 // Remove the now element from the set as it should only
                 // hold the timestamps for passed operations.
                 redis.zrem(key, now, now, function (err) {
-                    cb(err, timeLeft);
+                    cb(err, false, timeLeft);
                 });
             }
         });
